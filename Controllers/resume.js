@@ -21,6 +21,8 @@ exports.addResume = async(req,res)=>{
         console.log(req.file)
         const pdfBuffer = req.file.buffer || null;
         const pdfPath = req.file.path ;
+
+        
         const fs = require('fs');
         const dataBuffer = fs.readFilesync(pdfPath);
         const pdfData = await pdfParse(dataBuffer);

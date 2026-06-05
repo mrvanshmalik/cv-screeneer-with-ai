@@ -21,6 +21,9 @@ const UserRoutes = require('./Routes/user');
 const ResumeRoutes = require('./Routes/resume');
 
 app.use('/api/user',UserRoutes)
+
+
+
 app.use('/api/resume',ResumeRoutes)
 
 
