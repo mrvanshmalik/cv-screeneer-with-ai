@@ -1,0 +1,335 @@
+.dashboard{
+    flex: 0.8;
+    /* height: 100vh; */
+    overflow: auto;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    box-sizing: border-box;
+    min-height: 100vh;
+    height: auto;
+}
+
+.dashboardLeft{
+    width: 70%;
+    padding: 30px;
+    height: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    background-color: #f4f6fa;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px 3px rgba(0,0,0,0.2);
+
+}
+
+/* .dashboardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
+.dashboardHeaderTitle{
+    font-size: 26px;
+    font-weight: 600;
+
+}
+
+.dashboardHeaderLargeTitle{
+    /* font-size: 52px; */
+    font-size: clamp(26px, 5vw, 52px);
+}
+
+.alertInfo{
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 30px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin: 40px 0;
+    font-size: 16px;
+    background-color: white;
+}
+
+
+.dashboardUploadResume{
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.dashboardResumeBlock{
+    width: 65%;
+    background-color: white;
+    border-radius: 30px;
+    padding: 15px 30px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    font-size: 22px;
+}
+
+.dashboardInputField{
+    display: flex;
+    align-items: center;
+}
+
+.analyzeAIBtn{
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(rgb(50, 125, 50) , rgb(25, 61, 25));
+    border-radius: 20px;
+    border: 2px solid ;
+    margin-right: 50%;
+}
+input{
+    display: none;
+}
+
+.jobDesc{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    box-sizing: border-box;
+}
+.textArea{
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid green;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    width: 65%;
+    resize: none;
+}
+
+.analyzeBtn{
+    width: 100px;
+    height: 40px;
+    border: 2px solid green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background: linear-gradient(rgb(50, 125, 50) , rgb(25, 61, 25));
+    font-weight: bold;
+    color: #f4f6fa;
+    cursor: pointer;
+
+}
+
+.dashboardRight{
+    width: 25%;
+    height: fit-content;
+    box-sizing: border-box;
+    background-color: #f4f6fa;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+.dashboardRightTopCard{
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+
+
+
+.dashboardRightTopCard div:first-child{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.profileImg{
+    width: 85px ;
+    height: 85px;
+    border-radius: 100%;
+    margin: 20px 0;
+    border: 1px solid green ;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ======================
+   TABLET
+====================== */
+@media (max-width: 992px) {
+
+    .dashboard {
+        padding: 25px;
+        gap: 25px;
+    }
+
+    .dashboardLeft {
+        width: 68%;
+        padding: 25px;
+    }
+
+    .dashboardRight {
+        width: 32%;
+    }
+
+    .dashboardHeaderLargeTitle {
+        font-size: 38px;
+    }
+
+    .dashboardResumeBlock {
+        width: 60%;
+        font-size: 20px;
+    }
+
+    .textArea {
+        width: 60%;
+    }
+}
+
+
+/* ======================
+   MOBILE
+====================== */
+@media (max-width: 768px) {
+
+    .dashboard {
+        flex-direction: column;
+        padding: 15px;
+        gap: 20px;
+        min-height: auto;
+    }
+
+    .dashboardLeft,
+    .dashboardRight {
+        width: 100%;
+    }
+
+    .dashboardLeft {
+        padding: 20px;
+    }
+
+    .dashboardHeaderTitle {
+        font-size: 18px;
+    }
+
+    .dashboardHeaderLargeTitle {
+        font-size: 30px;
+        line-height: 1.2;
+        margin-top: 5px;
+    }
+
+    .dashboardUploadResume {
+        flex-direction: column;
+        gap: 15px;
+        align-items: stretch;
+    }
+
+    .dashboardResumeBlock {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .dashboardInputField {
+        justify-content: center;
+    }
+
+    .analyzeAIBtn {
+        margin-right: 0;
+        width: 180px;
+        text-align: center;
+    }
+
+    .jobDesc {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .textArea {
+        width: 100%;
+    }
+
+    .analyzeBtn {
+        width: 180px;
+        align-self: center;
+    }
+
+    .dashboardRight {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .dashboardRightTopCard {
+        min-height: 220px;
+    }
+}
+
+
+/* ======================
+   SMALL MOBILE
+====================== */
+@media (max-width: 576px) {
+
+    .dashboard {
+        padding: 10px;
+    }
+
+    .dashboardLeft {
+        padding: 15px;
+    }
+
+    .dashboardHeaderLargeTitle {
+        font-size: 24px;
+    }
+
+    .alertInfo {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .dashboardRight {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboardRightTopCard {
+        min-height: auto;
+    }
+
+    .dashboardRightTopCard div:first-child {
+        font-size: 18px;
+    }
+
+    .profileImg {
+        width: 70px;
+        height: 70px;
+    }
+
+    .analyzeBtn,
+    .analyzeAIBtn {
+        width: 100%;
+    }
+}
