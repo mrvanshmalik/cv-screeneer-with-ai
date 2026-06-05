@@ -1,59 +1,69 @@
-import React from 'react'
-import styles from "./admin.module.css"
+import React from "react";
+import styles from "./admin.module.css";
 import Skeleton from "@mui/material/Skeleton";
-import WithAuthHOC from '../../Utils/HOC/withAuthHoc';
-
+import WithAuthHOC from "../../Utils/HOC/withAuthHoc";
+import { useState, useEffect } from "react";
+import { Axios } from "../../Utils/axios";
 
 const Admin = () => {
+  const [data, setData] = useState([]);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    const fetchAllData = async () => {
+      setLoader(true);
+      try {
+        const results = await axios.get("/api/resume/get");
+        setData(results.data.resumes);
+      } catch (err) {
+        console.log(err);
+        alert("somthing went wrong");
+      } finally {
+        setLoader(false);
+      }
+    };
+    fetchAllData();
+  }, []);
+
   return (
     <div className={styles.admin}>
-        <div className={styles.adminBlock}>
-            <Skeleton variant="rectangular" sx={{borderRadius: "20px"}} width={260} height={600} />
+      <div className={styles.adminBlock}>
+        {loader && (
+          <>
+            <Skeleton
+              variant="rectangular"
+              sx={{ borderRadius: "20px" }}
+              width={260}
+              height={600}
+            />
+            <Skeleton
+              variant="rectangular"
+              sx={{ borderRadius: "20px" }}
+              width={260}
+              height={600}
+            />
+            <Skeleton
+              variant="rectangular"
+              sx={{ borderRadius: "20px" }}
+              width={260}
+              height={600}
+            />
+          </>
+        )}
 
-
-
-
-
+        {data.map((item, index) => {
+          return (
             <div className={styles.adminCard}>
-                <h2>Coding Love</h2>
-                <p style={{color: "green"}}>Malikvansh2704@gmail.com </p>
-                <h3>Score : 87%</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos doloribus rem rerum culpa, id consequuntur repellat itaque fuga quas sint laudantium ab ipsa, temporibus veniam dolorum corrupti nulla dicta laborum.</p>
+              <h2>{item?.user?.name}</h2>
+              <p style={{ color: "green" }}>{item?.user?.email} </p>
+              <h3>Score : {item.score}%</h3>
+              <p>{item.feedback}</p>
             </div>
-
-
-
-            <div className={styles.adminCard}>
-                <h2>Coding Love</h2>
-                <p style={{color: "green"}}>Malikvansh2704@gmail.com </p>
-                <h3>Score : 87%</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos doloribus rem rerum culpa, id consequuntur repellat itaque fuga quas sint laudantium ab ipsa, temporibus veniam dolorum corrupti nulla dicta laborum.</p>
-            </div>
-
-
-
-
-            <div className={styles.adminCard}>
-                <h2>Coding Love</h2>
-                <p style={{color: "green"}}>Malikvansh2704@gmail.com </p>
-                <h3>Score : 87%</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos doloribus rem rerum culpa, id consequuntur repellat itaque fuga quas sint laudantium ab ipsa, temporibus veniam dolorum corrupti nulla dicta laborum.</p>
-            </div>
-
-
-
-
-
-            <div className={styles.adminCard}>
-                <h2>Coding Love</h2>
-                <p style={{color: "green"}}>Malikvansh2704@gmail.com </p>
-                <h3>Score : 87%</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos doloribus rem rerum culpa, id consequuntur repellat itaque fuga quas sint laudantium ab ipsa, temporibus veniam dolorum corrupti nulla dicta laborum.</p>
-            </div>
-            
-        </div>
+          );
+        })}
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default WithAuthHOC(Admin) ;
+export default WithAuthHOC(Admin);

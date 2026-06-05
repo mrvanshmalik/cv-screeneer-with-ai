@@ -15,13 +15,13 @@ const history = () => {
     const fetchUserData = async () => {
       setLoader(true);
       try {
-        const results = await axios.get(`/api/resume/get/${userInfo?._id}`)
-        
-        
+        const results = await axios.get(`/api/resume/get/${userInfo?._id}`);
+        setData(results.data.resumes);
       } catch (err) {
-        console.log(err)
-        alert("somthing went wrong")
-        
+        console.log(err);
+        alert("somthing went wrong");
+      } finally {
+        setLoader(false);
       }
     };
 
@@ -30,64 +30,25 @@ const history = () => {
   return (
     <div className={styles.history}>
       <div className={styles.historyCardBlock}>
-        <Skeleton
-          variant="rectangular"
-          sx={{ borderRadius: "20px" }}
-          width={260}
-          height={200}
-        />
-
-        <div className={styles.historyCard}>
-          <div className={styles.cardPercentage}>90%</div>
-          <h2> Frontend Developer</h2>
-          <p>Resume Name : Resume.pdf</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            inventore consectetur minus eius incidunt exercitationem, labore
-            deserunt veniam, reiciendis facilis beatae molestiae ea aspernatur
-            ipsam maiores quisquam voluptates autem perspiciatis?
-          </p>
-          <p>Dated : 2025-11-18</p>
-        </div>
-
-        <div className={styles.historyCard}>
-          <div className={styles.cardPercentage}>90%</div>
-          <h2> Frontend Developer</h2>
-          <p>Resume Name : Resume.pdf</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            inventore consectetur minus eius incidunt exercitationem, labore
-            deserunt veniam, reiciendis facilis beatae molestiae ea aspernatur
-            ipsam maiores quisquam voluptates autem perspiciatis?
-          </p>
-          <p>Dated : 2025-11-18</p>
-        </div>
-
-        <div className={styles.historyCard}>
-          <div className={styles.cardPercentage}>90%</div>
-          <h2> Frontend Developer</h2>
-          <p>Resume Name : Resume.pdf</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            inventore consectetur minus eius incidunt exercitationem, labore
-            deserunt veniam, reiciendis facilis beatae molestiae ea aspernatur
-            ipsam maiores quisquam voluptates autem perspiciatis?
-          </p>
-          <p>Dated : 2025-11-18</p>
-        </div>
-
-        <div className={styles.historyCard}>
-          <div className={styles.cardPercentage}>90%</div>
-          <h2> Frontend Developer</h2>
-          <p>Resume Name : Resume.pdf</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis
-            inventore consectetur minus eius incidunt exercitationem, labore
-            deserunt veniam, reiciendis facilis beatae molestiae ea aspernatur
-            ipsam maiores quisquam voluptates autem perspiciatis?
-          </p>
-          <p>Dated : 2025-11-18</p>
-        </div>
+        {loader && (
+          <Skeleton
+            variant="rectangular"
+            sx={{ borderRadius: "20px" }}
+            width={260}
+            height={200}
+          />
+        )}
+        {data.map((item, index) => {
+          return (
+            <div key={item._id} className={styles.historyCard}>
+              <div className={styles.cardPercentage}>%</div>
+              {/* <h2> Frontend Developer</h2> */}
+              <p>Resume Name :{item.resume_name}</p>
+              <p>{item.feedback}</p>
+              <p>Dated : {item.createdAt.slice(0, 10)}</p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
