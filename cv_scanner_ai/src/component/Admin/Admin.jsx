@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./admin.module.css";
 import Skeleton from "@mui/material/Skeleton";
-import WithAuthHOC from "../../Utils/HOC/withAuthHoc";
+import WithAuthHOC from "../../Utils/HOC/withAuthHOC";
 import { useState, useEffect } from "react";
-import { Axios } from "../../Utils/axios";
+import axios from "../../Utils/axios";
 
 const Admin = () => {
   const [data, setData] = useState([]);
@@ -13,7 +13,7 @@ const Admin = () => {
     const fetchAllData = async () => {
       setLoader(true);
       try {
-        const results = await axios.get("/api/resume/get");
+        const results = await instance.get("/api/resume/get");
         setData(results.data.resumes);
       } catch (err) {
         console.log(err);
@@ -53,7 +53,7 @@ const Admin = () => {
 
         {data.map((item, index) => {
           return (
-            <div className={styles.adminCard}>
+            <div key={item._id} className={styles.adminCard}>
               <h2>{item?.user?.name}</h2>
               <p style={{ color: "green" }}>{item?.user?.email} </p>
               <h3>Score : {item.score}%</h3>

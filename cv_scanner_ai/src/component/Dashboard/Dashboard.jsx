@@ -1,11 +1,12 @@
 import styles from "./Dashboard.module.css";
 import CreditScoreIcon from "@mui/icons-material/CreditScore";
 import Skeleton from "@mui/material/Skeleton";
-import WithAuthHOC from "../../utils/HOC/withAuthHOC";
+import WithAuthHOC from "../../Utils/HOC/withAuthHoc";
 import { useState } from "react";
-import axios from "../../utils/axios";
+import axios from "../../Utils/axios";
 import { useContext } from "react";
-import { AuthContext } from "../../utils/AuthContext";
+import { AuthContext } from "../../Utils/AuthContext";
+import SportsScoreIcon from "@mui/icons-material/SportsScore";
 
 const Dashboard = () => {
   const [uploadFiletext, setUploadFileText] = useState("Upload your resume");
@@ -19,7 +20,11 @@ const Dashboard = () => {
 
   const handleOnChangeFile = (e) => {
     setResumeFile(e.target.files[0]);
-    setUploadFileText(e.target.files[0].name);
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setResumeFile(file);
+    setUploadFileText(file.name);
   };
 
   const handleUpload = async () => {
@@ -31,6 +36,7 @@ const Dashboard = () => {
     const formData = new FormData();
     formData.append("resume", resumeFile);
     formData.append("job_desc", jobDesc);
+    if (!userInfo?._id) return;
     formData.append("user", userInfo._id);
 
     setLoading(true);
@@ -107,9 +113,7 @@ const Dashboard = () => {
           <div>Analyze With AI</div>
           <img
             className={styles.profileImg}
-            src={
-              userInfo?.photoUrl
-            }
+            src={userInfo?.photoUrl}
             alt={"User_image"}
           />
           <h2>{userInfo?.name}</h2>
@@ -131,9 +135,7 @@ const Dashboard = () => {
             </div>
             <div className={styles.feedback}>
               <h3>Feedback</h3>
-              <p>
-                {result?.feedback}
-              </p>
+              <p>{result?.feedback}</p>
             </div>
           </div>
         )}

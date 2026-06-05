@@ -6,7 +6,7 @@ import { auth,provider } from '../../Utils/firebase';
 import{signInWithPopup} from 'firebase/auth';
 import { AuthContext } from '../../Utils/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../Utils/axios';
+import axios from "../../Utils/axios";
 
 
 
@@ -32,7 +32,7 @@ const Login = () => {
         console.log(err)
       })
       setLogin(true)
-      localStorage.setItem("isLogin",true)
+      localStorage.setItem("isLogin", "true");
       
       navigate('/dashboard')
 

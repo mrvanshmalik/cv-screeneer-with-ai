@@ -9,15 +9,17 @@ import Dashboard from './component/Dashboard/Dashboard'
 import History from './component/History/History'
 import Admin from './component/Admin/Admin'
 import Login from './component/Login/Login'
+import { useLocation } from "react-router-dom";
 
 
 function App() {
   const [count, setCount] = useState(0)
+  const location = useLocation();
 
   return (
     <>
       <div className='App'>
-        <SideBar />
+        {location.pathname !== "/" && <SideBar />}
         <Routes>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/history' element={<History/>}/>

@@ -1,9 +1,9 @@
 import styles from "./History.module.css";
 import { Skeleton } from "@mui/material";
-import WithAuthHOC from "../../utils/HOC/withAuthHOC";
+import WithAuthHOC from "../../Utils/HOC/withAuthHoc";
 import { useState, useEffect, useContext } from "react";
-import axios from "../../utils/axios";
-import { AuthContext } from "../../utils/AuthContext";
+import axios from "../../Utils/axios";
+import { AuthContext } from "../../Utils/AuthContext";
 
 const history = () => {
   const [data, setData] = useState([]);
