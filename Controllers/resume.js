@@ -22,7 +22,7 @@ exports.addResume = async(req,res)=>{
         const pdfBuffer = req.file.buffer || null;
         const pdfPath = req.file.path ;
 
-        
+
         const fs = require('fs');
         const dataBuffer = fs.readFilesync(pdfPath);
         const pdfData = await pdfParse(dataBuffer);
@@ -101,8 +101,6 @@ exports.getResumeForAdmin = async (req, res) => {
     try {
         let resumes = await ResumeModel.find({}).sort({ createdAt: -1}).populate('user');
         return res.status(200).json({ mwssage: "Fetched All History" , resumes: resumes });
-
-        
 
     } catch (err) {
         console.error(err);

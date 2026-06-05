@@ -16,6 +16,7 @@ exports.register = async(req,res)=>{
             message:"Welcome Back",
             user:userExist
         })
+        
 
     }catch(err){
         console.log(err)

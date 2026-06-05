@@ -3,6 +3,7 @@ mongoose.connect('mongodb+srv://malikvansh2704_db_user:VchAe0bfXT6pRERf@cluster0
     console.log("Data base connected !!!")
 }).catch(err => {
     console.log("Something err", err);
+    
 })
 
 

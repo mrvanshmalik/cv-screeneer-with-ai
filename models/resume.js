@@ -5,6 +5,7 @@ const ResumeSchema = new mongoose.Schema({
         ref:"user",
         required:true
     },
+    
     resume_name:{
         type: String ,
         required: true
